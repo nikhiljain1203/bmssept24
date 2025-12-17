@@ -1,6 +1,9 @@
 package org.example.bmssept24.models;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import lombok.Getter;
@@ -18,6 +21,7 @@ public class Booking extends BaseModel {
     @ManyToOne
     private User user;
     @ManyToOne
+    @JoinColumn(name = "show_id")
     private Show show;
     private int amount;
     @OneToMany
@@ -25,5 +29,6 @@ public class Booking extends BaseModel {
     private Date bookingDate;
     @OneToMany
     private List<ShowSeat> bookedSeats;
+    @Enumerated(EnumType.STRING)
     private BookingStatus status;
 }

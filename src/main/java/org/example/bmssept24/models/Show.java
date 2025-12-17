@@ -10,6 +10,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
+@Table(name = "shows")
 public class Show extends BaseModel {
     @ManyToOne
     private Movie movie;
@@ -19,5 +20,6 @@ public class Show extends BaseModel {
     private Date endTime;
     @Enumerated(EnumType.ORDINAL)
     @ElementCollection
+    @CollectionTable(name = "show_features", joinColumns = @JoinColumn(name = "show_id"))
     private List<Feature> features;
 }
